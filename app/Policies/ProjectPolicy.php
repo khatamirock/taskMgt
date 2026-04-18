@@ -53,7 +53,7 @@ class ProjectPolicy
      */
     public function assignMember(User $user, Project $project): bool
     {
-        return $user->isAdmin() && $project->created_by === $user->id;
+        return $user->isAdmin() || $project->created_by === $user->id;
     }
 
     /**

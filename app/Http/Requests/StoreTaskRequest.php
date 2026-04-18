@@ -23,7 +23,7 @@ class StoreTaskRequest extends FormRequest
     {
         return [
             'title' => 'required|string|max:255',
-            'project_id' => 'required|exists::projects,id',
+            'project_id' => 'required|exists:projects,id',
             'assigned_to' => 'nullable|exists:users,id',
         ];
     }

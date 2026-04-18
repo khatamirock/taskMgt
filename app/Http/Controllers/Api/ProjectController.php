@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
+use App\Http\Resources\ProjectResource;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Session\Store;
@@ -39,7 +40,7 @@ class ProjectController extends Controller
 
         $project = Project::create([
             'name' => $request->name,
-            'description' => $request->desciption,
+            'description' => $request->description,
             'created_by' => $request->user()->id,
         ]);
 

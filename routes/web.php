@@ -4,12 +4,13 @@ use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('auth.login');
+})->name('login');
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
-
-// API routes moved to routes/api.php
-
-
-// Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
+Route::get('/tasks', function () {
+    return view('tasks');
+})->name('tasks');
