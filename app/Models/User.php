@@ -34,7 +34,10 @@ class User extends Authenticatable
 
     public function tasks():HasMany
     {
-        return $this->hasMany(Task::class);
+        return $this->hasMany(Task::class,'assigned_to'); //lession !! why do we need foreign key...
+        // // > $users[1]->tasks()->get()
+//    Illuminate\Database\QueryException  SQLSTATE[HY000]: General error: 1 no such column: tasks.user_id (Connection: sqlite, SQL: select * from "tasks" where "tasks"."user_id" = 3 and "tasks"."user_id" is not null).
+
     }
 
     public function createdProjects(): HasMany

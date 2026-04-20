@@ -24,14 +24,7 @@ class TaskController extends Controller
         return TaskResource::collection($tasks);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      */
@@ -48,9 +41,9 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Task $task )
     {
-        //
+        return $task;
     }
 
     /**
@@ -61,20 +54,37 @@ class TaskController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    
+    //  * Update the specified resource in storage.
+    //  */
+    public function update(Request $request, Task $task)
     {
-        //
+        $validated = $request->validate([
+            'title'=> 'sometimes|string|max:255',
+            'description' =>'sometimes|string',
+            'status'=> 'sometimes|in:todo,in_progress,done',
+            'assigned_to'=>'exists:users,id'
+        ]);
+
+        $task->update($validated);
+
+        return response()->json($task);
+
     }
+
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Task $task)
     {
-        //
+        $this->authorize('delete',$task);
+
+        $task->delete();
+        return response()->json(['message' => 'Task deleted']);
+        
     }
 
 

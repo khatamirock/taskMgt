@@ -68,7 +68,7 @@
                 const { ok, data } = await api.login(email, password);
                 
                 if (ok) {
-                    window.location.href = '/dashboard';
+                    window.location.href = '/dashboard';1
                 } else {
                     errorDiv.innerText = data.message || 'Login failed. Please check your credentials.';
                     errorDiv.classList.remove('hidden');

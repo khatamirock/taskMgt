@@ -54,6 +54,10 @@ class TaskPolicy
         return false;
     }
 
+    public function delete(User $user,Task $task){
+        return $user->isAdmin() && $task->assigned_to === $user->id;
+    }
+
     /**
      * Determine whether the user can permanently delete the model.
      */
